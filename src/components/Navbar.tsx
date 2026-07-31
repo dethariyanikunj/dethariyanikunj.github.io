@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaDownload, FaGithub, FaLinkedin, FaMoon, FaSun } from "react-icons/fa6";
 import { navLinks, profile } from "../data/portfolio";
 
@@ -12,6 +12,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const isClickScrolling = useRef(false);
+  const scrollCheckInterval = useRef<number | null>(null);
+
   const [theme, setTheme] = useState<"dark" | "light">(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("theme");
@@ -37,37 +40,73 @@ export default function Navbar() {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
+  const startScrollEndDetection = () => {
+    if (scrollCheckInterval.current) clearInterval(scrollCheckInterval.current);
+
+    let lastY = window.scrollY;
+    let sameCount = 0;
+
+    scrollCheckInterval.current = window.setInterval(() => {
+      const currentY = window.scrollY;
+      if (Math.abs(currentY - lastY) < 3) {
+        sameCount++;
+        if (sameCount >= 2) {
+          isClickScrolling.current = false;
+          if (scrollCheckInterval.current) clearInterval(scrollCheckInterval.current);
+        }
+      } else {
+        sameCount = 0;
+      }
+      lastY = currentY;
+    }, 80);
+  };
+
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+
+    const wasMobileMenuOpen = menuOpen;
+    setActiveSection(href === "#hero" ? "" : href);
     setMenuOpen(false);
+    document.body.style.overflow = "";
 
-    if (href === "#hero" || href === "#") {
-      setActiveSection("");
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-      return;
-    }
+    // Lock scroll spy from overriding active tab during smooth scroll animation
+    isClickScrolling.current = true;
 
-    setActiveSection(href);
-    const targetId = href.replace("#", "");
-    const element = document.getElementById(targetId);
-    if (element) {
-      const navbarOffset = 70;
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-      const offsetPosition = elementPosition - navbarOffset;
+    // Delay scroll calculation slightly on mobile so dropdown closes and DOM layout settles
+    const delay = wasMobileMenuOpen ? 120 : 10;
 
-      window.scrollTo({
-        top: Math.max(0, offsetPosition),
-        behavior: "smooth",
-      });
-    }
+    setTimeout(() => {
+      if (href === "#hero" || href === "#") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        startScrollEndDetection();
+        return;
+      }
+
+      const targetId = href.replace("#", "");
+      const element = document.getElementById(targetId);
+      if (element) {
+        const navbarOffset = 70;
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = elementPosition - navbarOffset;
+
+        window.scrollTo({
+          top: Math.max(0, offsetPosition),
+          behavior: "smooth",
+        });
+
+        startScrollEndDetection();
+      } else {
+        isClickScrolling.current = false;
+      }
+    }, delay);
   };
 
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 30);
+
+      // Skip scroll spy active tab overrides while click scrolling is animating
+      if (isClickScrolling.current) return;
 
       // If scrolled near top of page (Hero section), deselect all tabs
       if (window.scrollY < 250) {
@@ -76,7 +115,7 @@ export default function Navbar() {
       }
 
       const sections = navLinks.map((l) => l.href.replace("#", ""));
-      const offsetThreshold = 100;
+      const offsetThreshold = 90;
       let currentActive = "";
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -96,7 +135,10 @@ export default function Navbar() {
 
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (scrollCheckInterval.current) clearInterval(scrollCheckInterval.current);
+    };
   }, []);
 
   useEffect(() => {
@@ -220,6 +262,7 @@ export default function Navbar() {
         <AnimatePresence>
           {menuOpen && (
             <motion.div
+              id="mobile-dropdown-menu"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
