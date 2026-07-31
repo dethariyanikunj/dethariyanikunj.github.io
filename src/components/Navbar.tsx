@@ -37,24 +37,61 @@ export default function Navbar() {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setMenuOpen(false);
+
+    if (href === "#hero" || href === "#") {
+      setActiveSection("");
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      return;
+    }
+
+    setActiveSection(href);
+    const targetId = href.replace("#", "");
+    const element = document.getElementById(targetId);
+    if (element) {
+      const navbarOffset = 70;
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - navbarOffset;
+
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: "smooth",
+      });
+    }
+  };
+
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 30);
 
-      const sections = navLinks.map((l) => l.href.replace("#", ""));
-      const scrollPosition = window.scrollY + 200;
+      // If scrolled near top of page (Hero section), deselect all tabs
+      if (window.scrollY < 250) {
+        setActiveSection("");
+        return;
+      }
 
-      for (const sectionId of sections) {
+      const sections = navLinks.map((l) => l.href.replace("#", ""));
+      const offsetThreshold = 100;
+      let currentActive = "";
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const sectionId = sections[i];
         const el = document.getElementById(sectionId);
         if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(`#${sectionId}`);
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= offsetThreshold) {
+            currentActive = `#${sectionId}`;
             break;
           }
         }
       }
+
+      setActiveSection(currentActive);
     };
 
     onScroll();
@@ -89,7 +126,7 @@ export default function Navbar() {
         <div className="relative z-10 flex items-center justify-between gap-4">
           
           {/* Brand Logo & Name */}
-          <a href="#" className="group flex min-w-0 items-center gap-3">
+          <a href="#" onClick={(e) => scrollToSection(e, "#hero")} className="group flex min-w-0 items-center gap-3">
             <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 via-purple-600 to-cyan-500 text-xs font-bold text-white shadow-lg shadow-indigo-500/25 transition-transform duration-300 group-hover:scale-105">
               <span className="absolute inset-0 rounded-full bg-indigo-400 blur-sm opacity-40 group-hover:opacity-75 transition-opacity" />
               <span className="relative z-10">{initials}</span>
@@ -111,6 +148,7 @@ export default function Navbar() {
                 <a
                   key={link.href}
                   href={link.href}
+                  onClick={(e) => scrollToSection(e, link.href)}
                   className={`relative rounded-full px-4 py-2 text-xs font-semibold transition-all duration-300 ${
                     isActive
                       ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md shadow-indigo-500/25"
@@ -194,7 +232,7 @@ export default function Navbar() {
                     key={link.href}
                     href={link.href}
                     className="rounded-2xl px-4 py-3 text-xs font-semibold text-slate-800 dark:text-neutral-200 transition-colors hover:bg-indigo-500/15 hover:text-indigo-600 dark:hover:text-indigo-300"
-                    onClick={() => setMenuOpen(false)}
+                    onClick={(e) => scrollToSection(e, link.href)}
                   >
                     {link.label}
                   </a>

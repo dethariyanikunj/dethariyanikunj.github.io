@@ -84,7 +84,7 @@ function SkillIcon({ skill }: { skill: SkillItem }) {
 
 export default function TechStack() {
   return (
-    <section id="skills" className="section-shell">
+    <section id="skills" className="section-shell scroll-mt-28 sm:scroll-mt-32">
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

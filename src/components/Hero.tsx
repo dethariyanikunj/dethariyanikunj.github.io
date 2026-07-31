@@ -14,7 +14,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-screen pt-28" aria-label="Introduction">
+    <section id="hero" className="relative min-h-screen pt-20 sm:pt-24 scroll-mt-24" aria-label="Introduction">
       <div className="section-shell flex min-h-[calc(100vh-7rem)] flex-col items-center gap-12 lg:flex-row lg:items-center">
         <div className="flex w-full flex-col items-center text-center lg:w-3/5 lg:items-start lg:text-left">
           

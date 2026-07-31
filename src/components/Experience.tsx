@@ -5,7 +5,7 @@ import Glass from "./Glass";
 
 export default function Experience() {
   return (
-    <section id="experience" className="section-shell">
+    <section id="experience" className="section-shell scroll-mt-28 sm:scroll-mt-32">
       {/* Experience Header */}
       <motion.h2
         initial={{ opacity: 0, y: 20 }}

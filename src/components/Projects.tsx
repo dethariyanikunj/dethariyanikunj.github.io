@@ -102,7 +102,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="section-shell">
+    <section id="projects" className="section-shell scroll-mt-28 sm:scroll-mt-32">
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

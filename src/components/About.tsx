@@ -12,7 +12,7 @@ const serviceIcons = [
 
 export default function About() {
   return (
-    <section id="about" className="section-shell">
+    <section id="about" className="section-shell scroll-mt-28 sm:scroll-mt-32">
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
