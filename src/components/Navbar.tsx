@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { FaDownload, FaGithub, FaLinkedin, FaMoon, FaSun } from "react-icons/fa6";
 import { navLinks, profile } from "../data/portfolio";
@@ -76,9 +77,7 @@ export default function Navbar() {
   return (
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-6 md:pt-5">
       <div
-        className={`pointer-events-auto relative mx-auto max-w-6xl transition-all duration-500 ease-out ${
-          menuOpen ? "rounded-3xl" : "rounded-full"
-        } ${
+        className={`pointer-events-auto relative mx-auto max-w-6xl rounded-3xl transition-all duration-300 ease-out ${
           scrolled
             ? "glass-nav px-4 py-2.5 shadow-2xl"
             : "border border-indigo-500/15 bg-white/80 dark:border-white/10 dark:bg-obsidian-900/60 px-4 py-3 shadow-lg backdrop-blur-md"
@@ -179,48 +178,56 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Dropdown Menu */}
-        {menuOpen && (
-          <div className="relative z-10 border-t border-indigo-500/15 dark:border-white/10 px-3 pb-3 pt-4 lg:hidden">
-            <div className="flex flex-col gap-1.5">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="rounded-2xl px-4 py-3 text-xs font-semibold text-slate-800 dark:text-neutral-200 transition-colors hover:bg-indigo-500/15 hover:text-indigo-600 dark:hover:text-indigo-300"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-            <div className="mt-4 flex items-center justify-between border-t border-indigo-500/15 dark:border-white/10 pt-4">
-              <div className="flex items-center gap-2">
-                {socialLinks.map(({ href, label, icon: Icon }) => (
+        {/* Mobile Dropdown Menu with Smooth Animated Expansion */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="relative z-10 overflow-hidden border-t border-indigo-500/15 dark:border-white/10 px-3 pb-3 pt-4 lg:hidden"
+            >
+              <div className="flex flex-col gap-1.5">
+                {navLinks.map((link) => (
                   <a
-                    key={href}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                    className="rounded-full border border-indigo-500/20 bg-white/80 dark:border-white/10 dark:bg-white/5 p-2.5 text-slate-700 dark:text-neutral-300 transition-all hover:bg-indigo-500/20 hover:text-indigo-600 dark:hover:text-indigo-300"
+                    key={link.href}
+                    href={link.href}
+                    className="rounded-2xl px-4 py-3 text-xs font-semibold text-slate-800 dark:text-neutral-200 transition-colors hover:bg-indigo-500/15 hover:text-indigo-600 dark:hover:text-indigo-300"
+                    onClick={() => setMenuOpen(false)}
                   >
-                    <Icon className="h-4 w-4" />
+                    {link.label}
                   </a>
                 ))}
               </div>
+              <div className="mt-4 flex items-center justify-between border-t border-indigo-500/15 dark:border-white/10 pt-4">
+                <div className="flex items-center gap-2">
+                  {socialLinks.map(({ href, label, icon: Icon }) => (
+                    <a
+                      key={href}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={label}
+                      className="rounded-full border border-indigo-500/20 bg-white/80 dark:border-white/10 dark:bg-white/5 p-2.5 text-slate-700 dark:text-neutral-300 transition-all hover:bg-indigo-500/20 hover:text-indigo-600 dark:hover:text-indigo-300"
+                    >
+                      <Icon className="h-4 w-4" />
+                    </a>
+                  ))}
+                </div>
 
-              <a
-                href={profile.resumeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 px-4 py-2 text-xs font-semibold text-white shadow-md"
-              >
-                <FaDownload className="text-[10px]" /> Resume (PDF)
-              </a>
-            </div>
-          </div>
-        )}
+                <a
+                  href={profile.resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 px-4 py-2 text-xs font-semibold text-white shadow-md"
+                >
+                  <FaDownload className="text-[10px]" /> Resume (PDF)
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );
