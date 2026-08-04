@@ -3,8 +3,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   FaApple,
   FaArrowUpRightFromSquare,
+  FaChevronDown,
   FaChevronLeft,
   FaChevronRight,
+  FaChevronUp,
   FaGooglePlay,
   FaMagnifyingGlassPlus,
   FaXmark,
@@ -351,6 +353,11 @@ function ProjectCard({
 
 export default function Projects() {
   const [lightbox, setLightbox] = useState<LightboxState>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const INITIAL_COUNT = 6;
+  const visibleProjects = showAll ? projects : projects.slice(0, INITIAL_COUNT);
+  const hiddenCount = projects.length - INITIAL_COUNT;
 
   const handleOpenLightbox = (images: string[], startIdx: number, title: string) => {
     setLightbox({
@@ -385,7 +392,7 @@ export default function Projects() {
       </motion.h2>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project, index) => (
+        {visibleProjects.map((project, index) => (
           <ProjectCard
             key={project.title}
             project={project}
@@ -394,6 +401,31 @@ export default function Projects() {
           />
         ))}
       </div>
+
+      {/* View More / Show Less Toggle Button */}
+      {projects.length > INITIAL_COUNT && (
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mt-10 flex justify-center"
+        >
+          <button
+            onClick={() => setShowAll((prev) => !prev)}
+            className="group inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-6 py-3 text-sm font-semibold text-indigo-600 dark:text-indigo-300 backdrop-blur-md transition-all hover:border-indigo-500 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-500/30 dark:hover:text-white hover:shadow-lg hover:shadow-indigo-500/20 active:scale-95 cursor-pointer"
+          >
+            <span>
+              {showAll
+                ? "Show Fewer Projects"
+                : `View More Projects (${hiddenCount} More)`}
+            </span>
+            {showAll ? (
+              <FaChevronUp className="text-xs transition-transform group-hover:-translate-y-0.5" />
+            ) : (
+              <FaChevronDown className="text-xs transition-transform group-hover:translate-y-0.5" />
+            )}
+          </button>
+        </motion.div>
+      )}
 
       {/* Fullscreen Lightbox Modal */}
       <ImageLightbox

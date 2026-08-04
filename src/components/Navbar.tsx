@@ -19,9 +19,8 @@ export default function Navbar() {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("theme");
       if (saved === "light" || saved === "dark") return saved;
-      return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
     }
-    return "dark";
+    return "light";
   });
 
   useEffect(() => {

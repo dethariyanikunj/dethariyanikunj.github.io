@@ -257,8 +257,8 @@ export const projects: Project[] = [
     description:
       "Dual-app EdTech suite with 20K+ installs. Student app features digital textbooks, interactive quizzes, and AI-evaluated homework. Teacher app includes AI-generated assignments, automated grading, and performance analytics.",
     role: "Lead Mobile Developer",
-    stack: ["Flutter", "Firebase", "AI/ML APIs", "REST", "GetX"],
-    tags: ["Flutter", "AI / ML", "EdTech", "20K+ Installs", "GetX"],
+    stack: ["Flutter", "Socket.io", "Firebase", "AI/ML APIs", "REST", "GetX"],
+    tags: ["Flutter", "Socket.io", "AI / ML", "EdTech", "20K+ Installs"],
     gradient: "from-blue-600/30 via-cyan-600/20 to-slate-900",
     iconSymbol: "📚",
     images: [
@@ -292,6 +292,48 @@ export const projects: Project[] = [
     ],
   },
   {
+    title: "cTrunk",
+    subtitle: "Parcel Operations, Billing & Delivery Management",
+    category: "Flutter Cross-Platform",
+    description:
+      "All-in-one parcel operations app designed to simplify booking, automated period & monthly billing, package tracking, instant PDF invoice generation & sharing, and digital delivery verification.",
+    role: "Lead Flutter Developer",
+    stack: ["Flutter", "GetX", "REST APIs"],
+    tags: ["Flutter", "GetX", "REST APIs", "Logistics", "PDF Billing"],
+    gradient: "from-purple-600/30 via-indigo-600/20 to-slate-900",
+    iconSymbol: "📦",
+    images: [
+      "./img/portfolio/ctrunk_1.webp",
+      "./img/portfolio/ctrunk_2.webp",
+      "./img/portfolio/ctrunk_3.webp"
+    ],
+    storeLinks: [
+      { platform: "android", label: "Play Store", url: "https://play.google.com/store/apps/details?id=com.ctrunk.app" },
+      { platform: "ios", label: "App Store", url: "https://apps.apple.com/us/app/ctrunk/id6744362531" },
+    ],
+  },
+  {
+    title: "K'anyi Kpee Ekpele",
+    subtitle: "Igbo & English Catholic Prayer & Liturgy App",
+    category: "Flutter Cross-Platform",
+    description:
+      "Daily Catholic community prayer platform featuring bilingual (Igbo & English) liturgy, daily Mass & Eucharistic video player streaming, daily scripture readings, homily reflections, and prayer reminders.",
+    role: "Lead Flutter Developer",
+    stack: ["Flutter", "REST APIs", "Video Player", "Firebase", "Localizations"],
+    tags: ["Flutter", "Video Player", "Firebase", "i18n / Localizations", "REST APIs"],
+    gradient: "from-amber-600/30 via-orange-600/20 to-slate-900",
+    iconSymbol: "🙏",
+    images: [
+      "./img/portfolio/niccsj_1.webp",
+      "./img/portfolio/niccsj_2.webp",
+      "./img/portfolio/niccsj_3.webp"
+    ],
+    storeLinks: [
+      { platform: "android", label: "Play Store", url: "https://play.google.com/store/apps/details?id=com.niccsj.kanyikpeeekpele" },
+      { platform: "ios", label: "App Store", url: "https://apps.apple.com/us/app/kanyi-kpee-ekpele/id6752566002" },
+    ],
+  },
+  {
     title: "Profi",
     subtitle: "Financial Project Management",
     category: "Flutter Cross-Platform",
@@ -302,7 +344,11 @@ export const projects: Project[] = [
     tags: ["Flutter", "BLoC / Cubit", "FinTech", "Enterprise"],
     gradient: "from-violet-600/30 via-indigo-600/20 to-slate-900",
     iconSymbol: "📊",
-    image: "", // Set screenshot image path here
+    images: [
+      "./img/portfolio/profi_1.png",
+      "./img/portfolio/profi_2.png",
+      "./img/portfolio/profi_3.png"
+    ],
   },
   {
     title: "My Bank",
@@ -329,7 +375,7 @@ export const projects: Project[] = [
     description:
       "A–Z travel assistance app for one of India's largest tour operators — destination discovery, itinerary planning, global route booking, Socket.io real-time updates, and Linphone VoIP.",
     role: "Android Developer",
-    stack: ["Native Android (Java)", "Socket.io", "Linphone VoIP", "Firebase"],
+    stack: ["Native Android (Java)", "Socket.io", "Linphone VoIP", "Twilio", "Firebase"],
     tags: ["Native Android", "Socket.io", "Linphone VoIP", "Travel"],
     gradient: "from-cyan-600/30 via-blue-600/20 to-slate-900",
     iconSymbol: "✈️",
@@ -339,6 +385,69 @@ export const projects: Project[] = [
       "./img/portfolio/flamingo_3.webp"
     ],
     storeLinks: [{ platform: "android", label: "Play Store", url: "https://play.google.com/store/apps/details?id=com.flamingotravels.app" }],
+  },
+  {
+    title: "MoneyMatterPlus",
+    subtitle: "DOP Agent Schedule & Account Manager",
+    category: "Native Android & Enterprise",
+    description:
+      "One-stop solution for Post Office (DOP) Agents featuring fast 5RD account downloads, native Android PDF schedule generation, automated portal uploads, customer account tracking, and Paytm payment gateway integration.",
+    role: "Sole Developer",
+    stack: ["Native Android (Java/Kotlin)", "Native PDF Generation", "REST APIs", "Firebase", "Paytm Payment Gateway"],
+    tags: ["Native Android", "Native PDF Generation", "Paytm SDK", "Firebase", "FinTech"],
+    gradient: "from-teal-600/30 via-emerald-600/20 to-slate-900",
+    iconSymbol: "💼",
+    images: [
+      "./img/portfolio/moneymatter_1.webp",
+      "./img/portfolio/moneymatter_2.webp",
+      "./img/portfolio/moneymatter_3.webp"
+    ],
+    storeLinks: [{ platform: "android", label: "Play Store", url: "https://play.google.com/store/apps/details?id=com.moneymatterplus" }],
+  },
+  {
+    title: "PO Plan Presentation",
+    subtitle: "Small Savings Scheme Presentation Tool",
+    category: "Native Android & Enterprise",
+    description:
+      "Financial calculation and presentation utility for advisors to generate custom illustrative presentations, maturity charts, and scheme comparisons for small savings plans integrated with Google Ads monetization.",
+    role: "Sole Developer",
+    stack: ["Native Android (Java/Kotlin)", "REST APIs", "Google Ads"],
+    tags: ["Native Android", "Google Ads", "REST APIs", "FinTech", "Calculators"],
+    gradient: "from-indigo-600/30 via-blue-600/20 to-slate-900",
+    iconSymbol: "📈",
+    images: [
+      "./img/portfolio/poplan_1.webp",
+      "./img/portfolio/poplan_2.webp",
+      "./img/portfolio/poplan_3.webp"
+    ],
+    storeLinks: [{ platform: "android", label: "Play Store", url: "https://play.google.com/store/apps/details?id=com.postofficeplanpresentation" }],
+  },
+  {
+    title: "Daily Drip",
+    subtitle: "Women's Lifestyle & Home/Gym Fitness Platform",
+    category: "Native Android & Enterprise",
+    description:
+      "Women-focused lifestyle & fitness app providing tailored Home and Gym workout plans, 5 weekly filmed video demonstrations with sets/reps formatting, 30-day auto-expiring progress photo tracking, and personalized nutrition guidance.",
+    role: "Android Developer",
+    stack: ["Native Android", "REST APIs", "Firebase"],
+    tags: ["Native Android", "REST APIs", "Firebase", "Health & Fitness", "Video Streaming"],
+    gradient: "from-rose-600/30 via-pink-600/20 to-slate-900",
+    iconSymbol: "🏋️‍♀️",
+    images: [
+      "./img/portfolio/dailydrip_1.png",
+    ],
+  },
+  {
+    title: "Ttalk",
+    subtitle: "Real-Time Messaging & Chat Platform",
+    category: "Native Android & Enterprise",
+    description:
+      "WhatsApp-style real-time messaging platform supporting 1-on-1 chats, group conversations, channels, broadcast messages, and dynamic room joining powered by Firebase Realtime Database and Crashlytics.",
+    role: "Android Developer",
+    stack: ["Native Android", "Firebase Realtime DB", "Firebase Crashlytics", "Realtime Sync"],
+    tags: ["Native Android", "Firebase Realtime DB", "Crashlytics", "Chat & Messaging"],
+    gradient: "from-emerald-600/30 via-teal-600/20 to-slate-900",
+    iconSymbol: "💬",
   },
 ];
 
