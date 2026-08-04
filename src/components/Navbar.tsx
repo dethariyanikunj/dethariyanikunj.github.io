@@ -237,6 +237,7 @@ export default function Navbar() {
               <a
                 href={profile.resumeUrl}
                 target="_blank"
+                download="Nikunj-Dethariya-Resume.pdf"
                 rel="noopener noreferrer"
                 className="ml-2 inline-flex items-center gap-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3.5 py-1.5 text-xs font-semibold text-indigo-600 dark:text-indigo-300 transition-all hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-500 dark:hover:text-white shadow-sm"
               >
@@ -299,6 +300,7 @@ export default function Navbar() {
                 <a
                   href={profile.resumeUrl}
                   target="_blank"
+                  download="Nikunj-Dethariya-Resume.pdf"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 rounded-full bg-indigo-600 px-4 py-2 text-xs font-semibold text-white shadow-md"
                 >

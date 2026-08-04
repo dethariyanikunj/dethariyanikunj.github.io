@@ -257,7 +257,7 @@ export const projects: Project[] = [
     description:
       "Dual-app EdTech suite with 20K+ installs. Student app features digital textbooks, interactive quizzes, and AI-evaluated homework. Teacher app includes AI-generated assignments, automated grading, and performance analytics.",
     role: "Lead Mobile Developer",
-    stack: ["Flutter", "Socket.io", "Firebase", "AI/ML APIs", "REST", "GetX"],
+    stack: ["Flutter", "Socket.io", "Firebase", "AI/ML APIs", "REST APIs", "GetX"],
     tags: ["Flutter", "Socket.io", "AI / ML", "EdTech", "20K+ Installs"],
     gradient: "from-blue-600/30 via-cyan-600/20 to-slate-900",
     iconSymbol: "📚",
@@ -277,7 +277,7 @@ export const projects: Project[] = [
     description:
       "Property marketplace for real estate brokers featuring automatic property-to-inquiry matching, buy/sell/lease listings with buyer profile management and location-based interactive search.",
     role: "Flutter Developer",
-    stack: ["Flutter", "Google Maps API", "Firebase", "Provider"],
+    stack: ["Flutter", "Google Maps API", "REST APIs", "Firebase", "Provider"],
     tags: ["Flutter", "Google Maps API", "Real-Estate", "Provider"],
     gradient: "from-emerald-600/30 via-teal-600/20 to-slate-900",
     iconSymbol: "🏠",
@@ -375,8 +375,8 @@ export const projects: Project[] = [
     description:
       "A–Z travel assistance app for one of India's largest tour operators — destination discovery, itinerary planning, global route booking, Socket.io real-time updates, and Linphone VoIP.",
     role: "Android Developer",
-    stack: ["Native Android (Java)", "Socket.io", "Linphone VoIP", "Twilio", "Firebase"],
-    tags: ["Native Android", "Socket.io", "Linphone VoIP", "Travel"],
+    stack: ["Native Android (Java)", "Socket.io", "Linphone VoIP", "Twilio", "REST APIs", "MVC", "Firebase"],
+    tags: ["Native Android", "Socket.io", "Linphone VoIP", "Twilio", "MVC", "Travel"],
     gradient: "from-cyan-600/30 via-blue-600/20 to-slate-900",
     iconSymbol: "✈️",
     images: [

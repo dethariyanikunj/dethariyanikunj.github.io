@@ -11,8 +11,6 @@ function copyStaticAssets() {
       const assets = [
         "img",
         "favicon.svg",
-        "favicon.png",
-        "favicon.ico",
         "Nikunj-Dethariya-Resume.pdf",
       ];
 
