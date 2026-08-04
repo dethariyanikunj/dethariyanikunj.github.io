@@ -216,7 +216,8 @@ export type Project = {
   role: string;
   gradient: string;
   iconSymbol: string;
-  image?: string; // Add screenshot image path e.g. "./img/portfolio/makemymembership.png"
+  image?: string; // Single hero screenshot path
+  images?: string[]; // Multiple app screenshot paths e.g. ["./img/portfolio/app1.png", "./img/portfolio/app2.png"]
   storeLinks?: StoreLink[];
   tags: string[];
 };
@@ -239,7 +240,11 @@ export const projects: Project[] = [
     tags: ["Flutter", "Razorpay", "Loyalty", "QR Deals", "GetX"],
     gradient: "from-indigo-600/30 via-purple-600/20 to-slate-900",
     iconSymbol: "💳",
-    image: "", // Set screenshot image path here e.g. "./img/portfolio/makemymembership.png"
+    images: [
+      "./img/portfolio/mmm_1.webp",
+      "./img/portfolio/mmm_2.webp",
+      "./img/portfolio/mmm_3.webp"
+    ],
     storeLinks: [
       { platform: "android", label: "Play Store", url: "https://play.google.com/store/apps/details?id=com.makemymembership.app" },
       { platform: "ios", label: "App Store", url: "https://apps.apple.com/in/app/makemymembership/id6743520328" },
@@ -256,7 +261,11 @@ export const projects: Project[] = [
     tags: ["Flutter", "AI / ML", "EdTech", "20K+ Installs", "GetX"],
     gradient: "from-blue-600/30 via-cyan-600/20 to-slate-900",
     iconSymbol: "📚",
-    image: "", // Set screenshot image path here
+    images: [
+      "./img/portfolio/saarthi_1.webp",
+      "./img/portfolio/saarthi_2.webp",
+      "./img/portfolio/saarthi_3.webp"
+    ],
     storeLinks: [
       { platform: "android", label: "Play Store", url: "https://play.google.com/store/apps/details?id=com.saarthipedagogy.teachersv2" },
     ],
@@ -272,7 +281,11 @@ export const projects: Project[] = [
     tags: ["Flutter", "Google Maps API", "Real-Estate", "Provider"],
     gradient: "from-emerald-600/30 via-teal-600/20 to-slate-900",
     iconSymbol: "🏠",
-    image: "", // Set screenshot image path here
+    images: [
+      "./img/portfolio/brooon_1.webp",
+      "./img/portfolio/brooon_2.webp",
+      "./img/portfolio/brooon_3.webp"
+    ],
     storeLinks: [
       { platform: "android", label: "Play Store", url: "https://play.google.com/store/apps/details?id=com.brooon.app" },
       { platform: "ios", label: "App Store", url: "https://apps.apple.com/us/app/brooon/id6462989329" },
@@ -302,8 +315,12 @@ export const projects: Project[] = [
     tags: ["Native Android", "Java/Kotlin", "Banking", "MVVM", "Enterprise"],
     gradient: "from-amber-600/30 via-orange-600/20 to-slate-900",
     iconSymbol: "🏦",
-    image: "", // Set screenshot image path here
-    storeLinks: [{ platform: "android", label: "Play Store", url: "https://play.google.com/store/search?q=mobile+banking&c=apps" }],
+    images: [
+      "./img/portfolio/my_bank_1.webp",
+      "./img/portfolio/my_bank_2.webp",
+      "./img/portfolio/my_bank_3.webp"
+    ],
+    storeLinks: [{ platform: "android", label: "Play Store", url: "https://play.google.com/store/apps/developer?id=Comviva" }],
   },
   {
     title: "Flamingo Transworld",
@@ -316,7 +333,11 @@ export const projects: Project[] = [
     tags: ["Native Android", "Socket.io", "Linphone VoIP", "Travel"],
     gradient: "from-cyan-600/30 via-blue-600/20 to-slate-900",
     iconSymbol: "✈️",
-    image: "", // Set screenshot image path here
+    images: [
+      "./img/portfolio/flamingo_1.webp",
+      "./img/portfolio/flamingo_2.webp",
+      "./img/portfolio/flamingo_3.webp"
+    ],
     storeLinks: [{ platform: "android", label: "Play Store", url: "https://play.google.com/store/apps/details?id=com.flamingotravels.app" }],
   },
 ];
