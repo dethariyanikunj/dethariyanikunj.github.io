@@ -139,17 +139,6 @@ export const technicalSkills: SkillCategory[] = [
 
 export const experience = [
   {
-    period: "Jun 2026 – Jul 2026",
-    company: "Helixbeat",
-    location: "Remote",
-    role: "Flutter Developer",
-    lines: [
-      "Developed Flutter Web appointment booking workflows for a healthcare platform, including patient scheduling, provider availability, and booking confirmation flows.",
-      "Implemented a patient creation module supporting both self-service registration and provider-assisted patient onboarding with form validation and workflow integration.",
-    ],
-    link: "",
-  },
-  {
     period: "Jul 2025 – May 2026",
     company: "Digi App Labs",
     location: "Canada (Remote)",
